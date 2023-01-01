@@ -1,0 +1,141 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+    font-family:sans-serif;
+}
+
+body{
+    background-color: rgb(214, 214, 214);
+}
+nav{
+    display: flex;
+    font-family:'Times New Roman', Times, serif;
+}
+.box1{
+    width:50%;
+   align-items: center;
+}
+.box2{
+    width: 50%;
+    justify-content: end;
+}
+.box2 input{
+    padding: 0.5em;
+    margin:1em;
+    width:35%;
+    border-radius: 1em;
+    font-size: 1em;
+
+}
+.box2 button{
+    padding: 0.5em;
+    margin: 0.8em;
+    width: 10%;
+    font-weight: bolder;
+    font-size: 1.1em;
+    border-radius: 1em;
+    background-color: green;
+    color: white;
+}
+ul{
+    display: flex;
+    height: 11vh;
+    background-color: black;
+}
+li{
+    list-style: none;
+    color:white;
+    font-size: 1.5em;
+    padding:0.7em;
+}
+
+.brand{
+    display: flex;
+    align-items: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.3em;
+    font-weight: bolder;
+}
+.brand img{
+    width:3vw;
+    border-radius: 50%;
+}
+.container{
+    height: 65vh;
+    background: url('music_player_bg_2.jpg');
+    background-position-y: 25%;
+    margin: 2em auto;
+    padding:2em;
+    width:70vw;
+    display: flex;
+    justify-content: end;
+}
+.list{
+    margin-top:4vh;
+    padding-right: 1vw;
+    overflow-y: scroll;
+    height: 50vh;
+}
+
+.bottom{
+    height: 15vh;
+    position: sticky;
+    background-color: black;
+    bottom:0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom input{
+    width:80vw;
+}
+.icons{
+    color:white;
+    margin-top: 1em;
+}
+.icons i{
+    cursor: pointer;
+}
+.songItem{
+    padding:1em;
+    height: 3.5vh;
+    background-color: white;;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 30px;
+    align-items: center;
+    width:auto;
+    margin:0.8em auto;
+}
+.songItem img{
+    height: 1.5em;
+    width:1.5em;
+    border-radius: 50px;
+}
+.songInfo{
+    position:absolute;
+    left:10vw;
+    top:9vh;
+    color:white;
+}
+.songInfo img{
+    height: 2em;
+    opacity: 0;
+    transition: 0.4s ease-in-out;
+}
+#song_title{
+    color:white;
+}
+#currentDuration{
+    position: absolute;
+    left:10vw;
+    top:5vh;
+}
+#mxDuration{
+    position: absolute;
+    right:10vw;
+    top:5vh;
+}
