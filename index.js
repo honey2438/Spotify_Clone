@@ -161,12 +161,14 @@ let dur=audioElement.addEventListener("loadedmetadata", () => {
 backwardPlay.onclick = () => {
   j--;
   if (j <=0) j = 16;
+  audioElement.src=songs[j%n].spath;
   play();
 };
 
 // forward button function
 forwardPlay.onclick = () => {
   j++;
+  audioElement.src=songs[j%n].spath;
   play();
 };
 
