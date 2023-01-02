@@ -20,23 +20,33 @@ nav{
     width: 50%;
     justify-content: end;
 }
-.box2 input{
-    padding: 0.5em;
-    margin:1em;
-    width:35%;
-    border-radius: 1em;
-    font-size: 1em;
-
+.box2-span{
+    display: flex;
+    align-items: center;
+    width:40%;
 }
-.box2 button{
+
+.box2-span input{
+    text-align: center;
+    border-top-left-radius: 0.6em;
+    border-bottom-left-radius: 0.6em;
     padding: 0.5em;
-    margin: 0.8em;
-    width: 10%;
+    width: 78%;
+    font-size: 1em;
+    outline: none;
+    border: none;
+}
+ .box2-span span{
+    padding: 0.389em;
+    width: 14%;
     font-weight: bolder;
     font-size: 1.1em;
-    border-radius: 1em;
-    background-color: green;
-    color: white;
+    background-color: white;
+    border-top-right-radius: 0.6em;
+    border-bottom-right-radius: 0.6em;
+}
+.box2-span span i{
+    color:rgb(1, 154, 1);
 }
 ul{
     display: flex;
@@ -63,7 +73,7 @@ li{
 }
 .container{
     height: 65vh;
-    background: url('music_player_bg_2.jpg');
+    background: url('music_player_bg_2.jpg') ;
     background-position-y: 25%;
     margin: 2em auto;
     padding:2em;
@@ -72,12 +82,15 @@ li{
     justify-content: end;
 }
 .list{
-    margin-top:4vh;
+    margin-top:3vh;
     padding-right: 1vw;
     overflow-y: scroll;
     height: 50vh;
 }
 
+.songList h2{
+    font-size: 2em;
+}
 .bottom{
     height: 15vh;
     position: sticky;
@@ -138,4 +151,63 @@ li{
     position: absolute;
     right:10vw;
     top:5vh;
+}
+
+@media(max-width:950px){
+.box2-span{
+    width:80%;
+}
+.box2-span input{
+    width:80%;
+    font-size: 0.8em;
+}
+.box2-span span{
+    width:19%;
+    font-size:0.8em;
+    text-align: center;
+    padding: 0.5em;
+}
+.box2-span span i{
+    font-size: 0.8em;
+}
+.brand{
+    font-size: 1em;
+}
+ul{
+    height: 8vh;
+}
+.songList h2{
+    font-size: 1.2em;
+}
+.container{
+    height: 72vh;
+    width:90vw;
+    justify-content: center;
+}
+.list{
+    margin-top: 2vh;
+    height: 57vh;
+}
+.icons i{
+    font-size: 2em;
+}
+.songItem{
+    padding:0.8em;
+    margin:0.6em auto;
+}
+.songItem span{
+    font-size: 0.8em;
+}
+.songItem img{
+    height: 1em;
+    width:1em;
+}
+.bottom{
+    height: 13vh;
+}
+.songInfo img{
+    height: 1.5em;
+}
+
+
 }

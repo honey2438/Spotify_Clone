@@ -10,7 +10,9 @@ let songItem = Array.from(document.getElementsByClassName("songItem"));
 let songTitle= document.getElementById("song_title");
 let currentDuration=document.getElementById("currentDuration");
 let mxDuration=document.getElementById("mxDuration");
+let container=document.getElementsByClassName('container')[0];
 
+// array of songs
 let songs = [
   { title: "perfect", spath: "songs/1.mp3", ipath: "image/1.jpg" },
   { title: "Aaja We Mahiya", spath: "songs/2.mp3", ipath: "image/2.jpg" },
@@ -39,30 +41,50 @@ let songs = [
   { title: "Dusk till Down", spath: "songs/17.mp3", ipath: "image/17.jpg" },
 ];
 
+let n=songs.length;
 let audioElement = new Audio(songs[0].spath);
+let check=songs[0].spath;
 
-masterPlay.addEventListener("click", () => {
-  if (audioElement.paused == true || audioElement.currentTime <= 0) {
+// play function
+let play=()=>{
+    closePlay();
     audioElement.play();
+    plButton[j%n].classList.remove("fa-play-circle");
+    plButton[j%n].classList.add("fa-pause-circle");
     masterPlay.classList.remove("fa-play-circle");
     masterPlay.classList.add("fa-pause-circle");
     gif.style.opacity = 1;
     songTitle.innerHTML=songs[j%17].title;
+    container.style.background=`url(${songs[j%17].ipath})`;
     dur;
-  } else {
+}
+// pause function
+let pause=()=>{
     audioElement.pause();
+    plButton[j%n].classList.add("fa-play-circle");
+    plButton[j%n].classList.remove("fa-pause-circle");
     masterPlay.classList.add("fa-play-circle");
     masterPlay.classList.remove("fa-pause-circle");
     gif.style.opacity = 0;
+}
+
+// control play pause button
+masterPlay.addEventListener("click", () => {
+  if (audioElement.paused == true) {
+    play();
+  } else {
+    pause();
   }
 });
 
+// to update the progressbar as per the song duration
 audioElement.addEventListener("timeupdate", () => {
     currentDuration
   myProgressBar.value =
     parseFloat(audioElement.currentTime / audioElement.duration) * 100;
 });
 
+// to update current time per second
 setInterval( () => {
     let min = Math.floor(audioElement.currentTime / 60);
     let sec = Math.floor(audioElement.currentTime % 60);
@@ -77,7 +99,7 @@ myProgressBar.addEventListener("change", () => {
 });
 
 
-
+// setting all the properties to the song list using songs array
 let i = 0;
 songItem.forEach((e) => {
   e.getElementsByTagName("span")[0].innerHTML = songs[i].title;
@@ -94,44 +116,39 @@ songItem.forEach((e) => {
 });
 
 
-//   closePlay();
+//   closePlay
 let closePlay = () => {
   plButton.forEach((e) => {
     e.classList.add("fa-play-circle");
     e.classList.remove("fa-pause-circle");
     masterPlay.classList.add("fa-play-circle");
     masterPlay.classList.remove("fa-pause-circle");
+    
   });
 };
 
+// choosing songs from the given list
 let j=0;
 plButton.forEach((e) => {
   e.addEventListener("click", () => {
-    if (audioElement.paused == true || audioElement.currentTime <= 0) {
-      closePlay();
-      e.classList.remove("fa-play-circle");
-      e.classList.add("fa-pause-circle");
-      masterPlay.classList.remove("fa-play-circle");
-      masterPlay.classList.add("fa-pause-circle");
-      let index = e.getAttribute("index");
-      audioElement.src = songs[index].spath;
-      gif.style.opacity = 1;
-      audioElement.play();
-      j=index;
-      songTitle.innerHTML=songs[j%17].title;
-      dur;
-    } else {
-      e.classList.add("fa-play-circle");
-      e.classList.remove("fa-pause-circle");
-      masterPlay.classList.add("fa-play-circle");
-      masterPlay.classList.remove("fa-pause-circle");
-      gif.style.opacity = 0;
-      audioElement.pause();
-    }
+    let index = e.getAttribute("index");
+    j=index;
+    if(check!=songs[index].spath)audioElement.src = songs[index].spath;
+    check=songs[index].spath;
+
+      if(audioElement.currentTime<=0){
+        play();
+      }
+      else if(audioElement.paused==true){
+        play();
+      }
+      else{
+        pause();
+      }
   });
 });
 
-
+// setting duration of the songs given in the list
 let dur=audioElement.addEventListener("loadedmetadata", () => {
     let min = Math.floor(audioElement.duration / 60);
     let sec = Math.floor(audioElement.duration % 60);
@@ -140,34 +157,20 @@ let dur=audioElement.addEventListener("loadedmetadata", () => {
     mxDuration.innerHTML = min + ":" + sec;
   });
 
+// backward button function
 backwardPlay.onclick = () => {
   j--;
   if (j <=0) j = 16;
-  console.log(j);
-  audioElement.src = songs[j % 17].spath;
-  masterPlay.classList.remove("fa-play-circle");
-  masterPlay.classList.add("fa-pause-circle");
-  gif.style.opacity = 1;
-  songTitle.innerHTML=songs[j%17].title;
-  audioElement.play();
-  dur;
+  play();
 };
 
-
+// forward button function
 forwardPlay.onclick = () => {
   j++;
-  console.log(j);
-  audioElement.src = songs[j % 17].spath;
-  masterPlay.classList.remove("fa-play-circle");
-  masterPlay.classList.add("fa-pause-circle");
-  gif.style.opacity = 1;
-  songTitle.innerHTML=songs[j%17].title;
-  audioElement.play();
-  dur;
+  play();
 };
 
 // search bar coding
-
     search.oninput=function(){
         let i;
         let filter=search.value.toLowerCase();
