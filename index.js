@@ -86,6 +86,7 @@ audioElement.addEventListener("timeupdate", () => {
 
 // to update current time per second
 setInterval( () => {
+    if(audioElement.currentTime==audioElement.duration)forwardPlay.onclick();
     let min = Math.floor(audioElement.currentTime / 60);
     let sec = Math.floor(audioElement.currentTime % 60);
     if (min < 10) min = "0" + min;
